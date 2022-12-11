@@ -4,24 +4,24 @@ using UnityEngine;
 
 public class BrightnessRegulator : MonoBehaviour
 {
-    //Material‚ğ‚¢‚ê‚é
+    //Materialã‚’ã„ã‚Œã‚‹
     Material myMaterial;
 
-    //Emission‚ÌÅ¬’l
+    //Emissionã®æœ€å°å€¤
     private float minEmission = 0.2f;
-    //Emission‚ÌÅ¬’l
+    //Emissionã®æœ€å°å€¤
     private float magEmission = 2.0f;
-    //Šp“x
+    //è§’åº¦
     private int degree = 0;
-    //”­Œõ‘¬“x
+    //ç™ºå…‰é€Ÿåº¦
     private int speed = 5;
-    //ƒ^[ƒQƒbƒg‚ÌƒfƒtƒHƒ‹ƒg‚ÌF
+    //ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®è‰²
     Color defaultColor = Color.white;
 
     // Start is called before the first frame update
     void Start()
     {
-        //ƒ^ƒO‚É‚æ‚Á‚ÄŒõ‚ç‚¹‚éF‚ğ•Ï‚¦‚é
+        //ã‚¿ã‚°ã«ã‚ˆã£ã¦å…‰ã‚‰ã›ã‚‹è‰²ã‚’å¤‰ãˆã‚‹
         if (tag == "SmallStarTag") 
         {
             this.defaultColor = Color.white;
@@ -35,10 +35,10 @@ public class BrightnessRegulator : MonoBehaviour
             this.defaultColor = Color.cyan;
         }
 
-        //ƒIƒuƒWƒFƒNƒg‚ÉƒAƒ^ƒbƒ`‚µ‚Ä‚¢‚éMaterial‚ğæ“¾
+        //ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ã‚¢ã‚¿ãƒƒãƒã—ã¦ã„ã‚‹Materialã‚’å–å¾—
         this.myMaterial = GetComponent<Renderer>().material;
 
-        //ƒIƒuƒWƒFƒNƒg‚ÌÅ‰‚ÌF‚ğİ’è
+        //ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æœ€åˆã®è‰²ã‚’è¨­å®š
         myMaterial.SetColor("_EmissionColor", this.defaultColor*minEmission);
     }
 
@@ -47,19 +47,19 @@ public class BrightnessRegulator : MonoBehaviour
     {
         if (this.degree >= 0) 
         {
-            //Œõ‚ç‚¹‚é‹­“x‚ğŒvZ‚·‚é
+            //å…‰ã‚‰ã›ã‚‹å¼·åº¦ã‚’è¨ˆç®—ã™ã‚‹
             Color emissionColor = this.defaultColor * (this.minEmission + Mathf.Sin(this.degree * Mathf.Deg2Rad) * this.magEmission);
-            //ƒGƒ~ƒbƒVƒ‡ƒ“‚ÉF‚ğİ’è‚·‚é
+            //ã‚¨ãƒŸãƒƒã‚·ãƒ§ãƒ³ã«è‰²ã‚’è¨­å®šã™ã‚‹
             myMaterial.SetColor("_EmissionColor", emissionColor);
-            //Œ»İ‚ÌŠp“x‚ğ¬‚³‚­‚·‚é
+            //ç¾åœ¨ã®è§’åº¦ã‚’å°ã•ãã™ã‚‹
             this.degree -= this.speed;
         }   
     }
 
-    //Õ“Ë‚ÉŒÄ‚Î‚ê‚éŠÖ”
+    //è¡çªã«å‘¼ã°ã‚Œã‚‹é–¢æ•°
     private void OnCollisionEnter(Collision other)
     {
-        //Šp“x‚ğ180‚Éİ’è
+        //è§’åº¦ã‚’180ã«è¨­å®š
         this.degree = 100;
     }
 }

@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class CloudController : MonoBehaviour
 {
-    //Å¬ƒTƒCƒY
+    //æœ€å°ã‚µã‚¤ã‚º
     private float minimum = 1.0f;
-    //Šg‘åk¬ƒXƒs[ƒh
+    //æ‹¡å¤§ç¸®å°ã‚¹ãƒ”ãƒ¼ãƒ‰
     private float mapSpeed = 10.0f;
-    //Šg‘å—¦
+    //æ‹¡å¤§ç‡
     private float magnifization = 0.07f;
 
     // Start is called before the first frame update
@@ -20,7 +20,7 @@ public class CloudController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //‰_‚ğŠg‘åk¬
+        //é›²ã‚’æ‹¡å¤§ç¸®å°
         this.transform.localScale = new Vector3(this.minimum + Mathf.Sin(Time.time * this.mapSpeed) * this.magnifization, this.transform.localScale.y, this.minimum + Mathf.Sin(Time.time * this.mapSpeed) * this.magnifization);
         
     }

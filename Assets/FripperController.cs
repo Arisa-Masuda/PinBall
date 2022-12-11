@@ -1,53 +1,63 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class FripperController : MonoBehaviour
 {
-    //HingeJointƒRƒ“ƒ|[ƒlƒ“ƒg‚ğ“ü‚ê‚é
+    //HingeJointã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã‚’å…¥ã‚Œã‚‹
     private HingeJoint myHingeJoint;
 
-    //‰Šú‚Ì“®‚«
+    //åˆæœŸã®å‹•ã
     private float defaultAngle = 20;
-    //’e‚¢‚½‚Ì“®‚«
+    //å¼¾ã„ãŸæ™‚ã®å‹•ã
     private float flickAngle = -20;
 
     // Start is called before the first frame update
     void Start()
     {
-        //HingeJointƒRƒ“ƒ|[ƒlƒ“ƒgæ“¾
+        //HingeJointã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆå–å¾—
         this.myHingeJoint = GetComponent<HingeJoint>();
 
-        //ƒtƒŠƒbƒp[‚ÌŒX‚«‚ğİ’è
+        //ãƒ•ãƒªãƒƒãƒ‘ãƒ¼ã®å‚¾ãã‚’è¨­å®š
         SetAngle(this.defaultAngle);
     }
 
     // Update is called once per frame
     void Update()
     {
-        //¶–îˆóƒL[‚ğ‰Ÿ‚µ‚½‚Æ‚«‚É¶ƒtƒŠƒbƒp[‚ğ“®‚©‚·
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && tag == "LeftFripperTag")
+        //ç™ºå±•èª²é¡Œï¼šã€Œä»–ã®ã‚­ãƒ¼å…¥åŠ›ã§å‹•ã‹ã›ã‚‹ã‚ˆã†ã«å¯¾å¿œã€ã‚’è¿½è¨˜
+        //å·¦çŸ¢å°ã‚­ãƒ¼ã¾ãŸã¯ï¼¡ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã«å·¦ãƒ•ãƒªãƒƒãƒ‘ãƒ¼ã‚’å‹•ã‹ã™
+        if ((Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A)) && tag == "LeftFripperTag")
         {
             SetAngle(this.flickAngle);
         }
-        //‰E–îˆóƒL[‚ğ‰Ÿ‚µ‚½‚Æ‚«‚É¶ƒtƒŠƒbƒp[‚ğ“®‚©‚·
-        if (Input.GetKeyDown(KeyCode.RightArrow) && tag == "RightFripperTag")
+        //å³çŸ¢å°ã‚­ãƒ¼ã¾ãŸã¯â…®ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã«å³ãƒ•ãƒªãƒƒãƒ‘ãƒ¼ã‚’å‹•ã‹ã™
+        if ((Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D)) && tag == "RightFripperTag")
         {
             SetAngle(this.flickAngle);
         }
-        //–îˆóƒL[‚ğ—£‚³‚ê‚½‚Æ‚«‚ÉƒtƒŠƒbƒp[‚ğŒ³‚É–ß‚·
-        if (Input.GetKeyUp(KeyCode.LeftArrow) && tag == "LeftFripperTag")
+        //ä¸‹çŸ¢å°ã‚­ãƒ¼ã¾ãŸã¯Sã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã«å·¦å³ã®ãƒ•ãƒªãƒƒãƒ‘ãƒ¼ã‚’å‹•ã‹ã™
+        if ((Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S)) && (tag == "LeftFripperTag" || tag == "RightFripperTag"))
         {
-            SetAngle(this.defaultAngle);
-        }
-        if (Input.GetKeyUp(KeyCode.RightArrow) && tag == "RightFripperTag")
-        {
-            SetAngle(this.defaultAngle);
+            SetAngle(this.flickAngle);
         }
 
+        //çŸ¢å°ã‚­ãƒ¼ã‚’é›¢ã•ã‚ŒãŸã¨ãã«ãƒ•ãƒªãƒƒãƒ‘ãƒ¼ã‚’å…ƒã«æˆ»ã™
+        if ((Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.A)) && tag == "LeftFripperTag")
+        {
+            SetAngle(this.defaultAngle);
+        }
+        if ((Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.D)) && tag == "RightFripperTag")
+        {
+            SetAngle(this.defaultAngle);
+        }
+        if ((Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKeyUp(KeyCode.S)) && (tag == "LeftFripperTag" || tag == "RightFripperTag"))
+        {
+            SetAngle(this.defaultAngle);
+        }
     }
 
-    //ƒtƒŠƒbƒp[‚ÌŒX‚«‚ğİ’è
+    //ãƒ•ãƒªãƒƒãƒ‘ãƒ¼ã®å‚¾ãã‚’è¨­å®š
     public void SetAngle (float angle)
     {
         JointSpring jointSpr = this.myHingeJoint.spring;

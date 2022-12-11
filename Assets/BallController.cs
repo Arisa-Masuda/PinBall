@@ -5,26 +5,26 @@ using UnityEngine.UI;
 
 public class BallController : MonoBehaviour
 {
-    //ƒ{[ƒ‹‚ªŒ©‚¦‚é‰Â”\«‚Ì‚ ‚éz²‚ÌÅ¬’l
+    //ãƒœãƒ¼ãƒ«ãŒè¦‹ãˆã‚‹å¯èƒ½æ€§ã®ã‚ã‚‹zè»¸ã®æœ€å°å€¤
     private float visiblePosZ = -6.5f;
 
-    //ƒQ[ƒ€ƒI[ƒo[‚ğ•\¦‚·‚éƒeƒLƒXƒg
+    //ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼ã‚’è¡¨ç¤ºã™ã‚‹ãƒ†ã‚­ã‚¹ãƒˆ
     private GameObject gameoverText;
 
     // Start is called before the first frame update
     void Start()
     {
-        //ƒV[ƒ“‚Ì’†‚ÌGameOverTextƒIƒuƒWƒFƒNƒg‚ğæ“¾
+        //ã‚·ãƒ¼ãƒ³ã®ä¸­ã®GameOverTextã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—
         this.gameoverText = GameObject.Find("GameOverText");
     }
 
     // Update is called once per frame
     void Update()
     {
-        //ƒ{[ƒ‹‚ª‰æ–Ê‚ÌŠO‚Éo‚½ê‡
+        //ãƒœãƒ¼ãƒ«ãŒç”»é¢ã®å¤–ã«å‡ºãŸå ´åˆ
         if (this.transform.position.z < this.visiblePosZ) 
         {
-            //GameOverText‚ÉƒQ[ƒ€ƒI[ƒo‚ğ•\¦
+            //GameOverTextã«ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒã‚’è¡¨ç¤º
             this.gameoverText.GetComponent<Text>().text = "Game Over";
         }
     }
